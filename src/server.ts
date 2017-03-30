@@ -7,6 +7,9 @@ import * as express from 'express';
 import { HelloWorldServerModuleNgFactory } from './helloworld/app.server.ngfactory';
 const helloworld = require('raw-loader!./helloworld/index.html');
 
+import { LoginServerModuleNgFactory } from './login/app.server.ngfactory';
+const login = require('raw-loader!./login/index.html');
+
 const port = process.env.PORT || 9876;
 const app = express();
 
@@ -27,5 +30,6 @@ app.use('/built', express.static('built'));
 app.get('/data', (req, res) => res.json({ name: 'Adrien' }));
 
 app.get('/helloworld', render(HelloWorldServerModuleNgFactory, helloworld));
+app.get('/login', render(LoginServerModuleNgFactory, login));
 
 app.listen(port, function() { console.log(`Server listening on port ${port}!`); });

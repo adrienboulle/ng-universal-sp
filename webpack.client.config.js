@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
+    login: './built/src/login/client.js',
     helloworld: './built/src/helloworld/client.js',
   },
   output: {path: path.join(__dirname, 'built'), filename: '[name]-bundle.js'},
