@@ -1,14 +1,15 @@
 import { enableProdMode, NgModuleFactory } from '@angular/core';
 import { renderModuleFactory } from '@angular/platform-server';
 require('zone.js/dist/zone-node.js');
+require('reflect-metadata');
 
 import * as express from 'express';
 
-import { HelloWorldServerModuleNgFactory } from './helloworld/app.server.ngfactory';
-const helloworld = require('raw-loader!./helloworld/index.html');
+import { AppServerModuleNgFactory } from './app/app.server.ngfactory';
+const appIndex = require('raw-loader!./app/index.html');
 
 import { LoginServerModuleNgFactory } from './login/app.server.ngfactory';
-const login = require('raw-loader!./login/index.html');
+const loginIndex = require('raw-loader!./login/index.html');
 
 const port = process.env.PORT || 9876;
 const app = express();
@@ -26,10 +27,12 @@ function render<T>(moduleFactory: NgModuleFactory<T>, html: string) {
 enableProdMode();
 
 app.use('/built', express.static('built'));
+app.use('/node_modules', express.static('node_modules'));
 
 app.get('/data', (req, res) => res.json({ name: 'Adrien' }));
 
-app.get('/helloworld', render(HelloWorldServerModuleNgFactory, helloworld));
-app.get('/login', render(LoginServerModuleNgFactory, login));
+app.get('/home', render(AppServerModuleNgFactory, appIndex));
+app.get('/lazy', render(AppServerModuleNgFactory, appIndex));
+app.get('/login', render(LoginServerModuleNgFactory, loginIndex));
 
 app.listen(port, function() { console.log(`Server listening on port ${port}!`); });
