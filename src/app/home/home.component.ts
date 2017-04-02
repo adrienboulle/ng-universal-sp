@@ -1,21 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
-import { TransferHttp } from '@angularclass/universal-transfer-state';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'home',
   template: `<h3>Hello {{name | async}}!</h3>`
 })
 export class HomeComponent implements OnInit {
-  public name: Observable<string>;
+  public name: Promise<string>;
 
-  constructor(private _transferHttp: TransferHttp) {}
+  constructor(private _appService: AppService) {}
 
   ngOnInit() {
-    this.name = this._transferHttp
-    .get('http://localhost:9876/data')
-    .map(data => data.name);
+    this.name = this._appService.getName();
   }
 }

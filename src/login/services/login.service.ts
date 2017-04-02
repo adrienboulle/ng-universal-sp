@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AbstractService } from '../../shared/services/abstract.service';
 
 import { Http } from '@angular/http';
+import { APP_CONFIG, AppConfig } from '../../shared/config/config';
 
 declare let window: any;
 
 @Injectable()
 export class LoginService extends AbstractService {
-  constructor(private _http: Http) {
-    super('/login');
+  constructor(@Inject(APP_CONFIG) public config: AppConfig, private _http: Http) {
+    super('/login', config);
   }
 
   public login(data: any): Promise<any> {

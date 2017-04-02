@@ -5,8 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { TransferHttpModule } from '@angularclass/universal-transfer-state';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+
+import { AppService } from './services/app.service';
 
 export const ROUTES: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +19,7 @@ export const ROUTES: Route[] = [
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     HttpModule,
     TransferHttpModule,
@@ -22,6 +27,7 @@ export const ROUTES: Route[] = [
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/'},
+    AppService,
   ],
   declarations: [
     AppComponent,

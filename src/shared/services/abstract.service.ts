@@ -2,24 +2,14 @@ import {Response, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-export class AbstractService {
-  protected _protocol: string;
-  protected _apiUrl: string;
-  protected _path: string;
-  protected _url: string;
-  protected _token: string;
+import { AppConfig } from '../config/config';
 
-  constructor(url: string, token?: string, protocol?: string) {
-    this._path = url;
-    this._protocol = protocol ? protocol : 'http://';
-    this._apiUrl = this._protocol + 'localhost';
-    this._url = this._apiUrl + url;
-    this._token = token;
-  }
+export class AbstractService {
+  constructor(protected _url: string, protected _config: AppConfig) {}
 
   protected _createAuthorizationHeader(headers?: Headers): Headers {
     headers = headers || new Headers();
-    headers.append('Authorization', this._token);
+    headers.append('Authorization', this._config.TOKEN);
 
     return headers;
   }
@@ -38,5 +28,9 @@ export class AbstractService {
 
   protected _handleError(error: Response | any): any {
     return Promise.reject(error);
+  }
+
+  protected getUrl(): string {
+    return this._config.URL() + this._url;
   }
 }
