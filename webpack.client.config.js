@@ -3,9 +3,8 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    polyfills: './built/src/polyfills.ts',
-    app: './built/src/app/client.ts',
-    login: './built/src/login/app.browser.ts',
+    home: './built/src/app/client.js',
+    login: './built/src/login/app.browser.js',
   },
   output: {
     path: path.join(__dirname, 'built'),
@@ -15,17 +14,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.js$/,
         use: [
           {
             loader: 'ng-router-loader',
             options: {
               aot: true,
-            }
-          },
-          {
-            loader: 'awesome-typescript-loader',
-          },
+            },
+          }
         ],
       },
       {
@@ -35,14 +31,14 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.js'],
   },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    //   output: {
-    //     comments: false,
-    //   },
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      output: {
+        comments: false,
+      },
+    }),
   ],
 };

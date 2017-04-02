@@ -16,8 +16,12 @@ module.exports = {
         test: /\.js$/,
         use: [
           {
-            loader: 'ng-universal-unlazy',
-          }
+            loader: 'ng-router-loader',
+            options: {
+              aot: true,
+              loader: 'sync',
+            },
+          },
         ],
       },
     ],
