@@ -1,3 +1,11 @@
+#!/usr/bin/env bash
+
+env=$NODE_ENV;
+
+if ! [ $env ]; then
+  env=dev
+fi
+
 node_modules/.bin/ngc
 
 node_modules/.bin/webpack --config webpack.client.config.js

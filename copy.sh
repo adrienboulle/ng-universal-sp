@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 
-env='DEV';
+env=$NODE_ENV;
 
-while getopts e: opt
-do
-  case "$opt" in
-    e) env=$OPTARG
-    ;;
-  esac
-done
+if ! [ $env ]; then
+  env=dev
+fi
 
 rm -rf built
 mkdir built
@@ -19,10 +15,10 @@ cp -r src/* built/src
 rm -r built/src/shared/config/base.conf.ts
 
 case "$env" in
-  "PRODUCTION")
+  "production")
     cp built/src/shared/config/prod.conf.ts built/src/shared/config/base.conf.ts
     ;;
-  "DEV")
+  "dev")
     cp built/src/shared/config/dev.conf.ts built/src/shared/config/base.conf.ts
     ;;
 esac
