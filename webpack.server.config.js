@@ -1,34 +1,17 @@
-const path = require('path');
+const shared = require('./webpack/shared');
 
 module.exports = {
   target: 'node',
   entry: {
     server: './built/src/server.js',
   },
-  output: {
-    path: path.join(__dirname, 'built'),
-    filename: '[name]-bundle.js',
-    publicPath: "/built/",
-  },
+  output: shared.output,
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'ng-router-loader',
-            options: {
-              aot: true,
-              loader: 'sync',
-            },
-          },
-        ],
-      },
+      shared.ngRouterLoader('sync'),
     ],
   },
   resolve: {
-    extensions: [
-      '.js',
-    ],
+    extensions: ['.js'],
   },
 };

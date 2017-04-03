@@ -1,28 +1,20 @@
-const webpackClientConfig = require('../../../webpack.client.config');
+const shared = require('../../../webpack/shared');
 
-webpackClientConfig.entry = {
-  lazy: './built/src/app/client.js',
-};
-
-webpackClientConfig.module = {
-  rules: [
-    {
-      test: /\.js$/,
-      use: [
-        {
-          loader: 'ng-router-loader',
-          options: {
-            aot: true,
-            loader: 'sync',
-          },
-        },
-      ],
-    },
-    {
-      test: /\.js$/,
-      loader: 'babel-loader?presets[]=es2015',
-    },
+module.exports = {
+  entry: {
+    lazy: './built/src/app/client.js',
+  },
+  output: shared.output,
+  module: {
+    rules: [
+      shared.ngRouterLoader('sync'),
+      shared.babelLoader,
+    ],
+  },
+  resolve: {
+    extensions: ['.js'],
+  },
+  plugins: [
+    shared.UglifyJsPlugin,
   ],
 };
-
-module.exports = webpackClientConfig;

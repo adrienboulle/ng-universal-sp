@@ -23,7 +23,7 @@ export const ROUTES: Route[] = [
     CommonModule,
     HttpModule,
     TransferHttpModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { initialNavigation: 'enabled' }),
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/'},
