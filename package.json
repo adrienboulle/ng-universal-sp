@@ -39,6 +39,8 @@
   },
   "scripts": {
     "build": "./build.sh",
+    "copy": "./copy.sh",
+    "ngc": "ngc",
     "serve": "node built/server-bundle.js",
     "start": "npm run build && npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"

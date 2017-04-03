@@ -3,6 +3,8 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { LoginPageComponent } from './components/loginPage/loginPage.component';
 import { routingProvidersLogin, routingLogin } from './components/loginPage/login.routes';
 
@@ -14,6 +16,7 @@ import { LoginService } from './services/login.service';
 
 @NgModule({
   imports: [
+    SharedModule,
     routingLogin,
     CommonModule,
     HttpModule,

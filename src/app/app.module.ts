@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ElementComponent } from './home/element.component';
 
 import { AppService } from './services/app.service';
 
@@ -32,6 +33,10 @@ export const ROUTES: Route[] = [
   declarations: [
     AppComponent,
     HomeComponent,
+    ElementComponent,
+  ],
+  entryComponents: [
+    ElementComponent,
   ],
   exports: [
     AppComponent,
