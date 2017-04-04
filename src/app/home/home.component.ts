@@ -6,10 +6,7 @@ import { ElementComponentNgFactory } from './element.component.ngfactory';
 
 @Component({
   selector: 'home',
-  template: `
-      <h3>Hello {{name | async}}!</h3>
-      <var #element></var>
-  `,
+  templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
   public name: Promise<string>;
