@@ -9,7 +9,7 @@
     "strictNullChecks": false,
     "target": "es6",
     "noImplicitAny": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "experimentalDecorators": true,
     "outDir": "built/src",
     "declaration": true,
