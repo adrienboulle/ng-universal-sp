@@ -34,6 +34,6 @@ app.get('/data', (req, res) => res.json({ name: 'Adrien' }));
 
 app.get('/home', render(AppServerModuleNgFactory, appIndex));
 app.get('/lazy', render(AppServerModuleNgFactory, appIndexLazy));
-app.get('/login', render(LoginServerModuleNgFactory, loginIndex));
+app.get('/login*', render(LoginServerModuleNgFactory, loginIndex));
 
 app.listen(port, function() { console.log(`Server listening on port ${port}!`); });
